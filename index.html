@@ -288,7 +288,7 @@
       flex-shrink: 0;
     }
 
-    /* Cadran & Marées */
+    /* Cadran & Marées 100% largeur avec cadran géant et textes collés */
     .tide-main-container {
       display: flex;
       flex-direction: column;
@@ -305,9 +305,11 @@
       justify-content: center;
       background: #0f172a;
       border-radius: 10px;
-      padding: 0.3rem 0.4rem;
+      padding: 0.35rem 0.6rem;
       border: 1px solid #334155;
       flex: 1;
+      width: 100%;
+      gap: 0.2rem;
     }
 
     .tide-ext-badge {
@@ -315,22 +317,22 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      max-width: 190px;
-      padding: 0.15rem 0.5rem;
+      max-width: 215px;
+      padding: 0.25rem 0.6rem;
       background: #1e293b;
       border-radius: 6px;
-      font-size: 0.68rem;
+      font-size: 0.75rem;
       font-weight: 700;
     }
 
     .tide-ext-badge.high {
       color: #38bdf8;
-      border-left: 3px solid #38bdf8;
+      border-left: 4px solid #38bdf8;
     }
 
     .tide-ext-badge.low {
       color: #ef4444;
-      border-left: 3px solid #ef4444;
+      border-left: 4px solid #ef4444;
     }
 
     .tide-schedule {
@@ -341,12 +343,13 @@
 
     .tide-row {
       background: #0f172a;
-      padding: 0.3rem 0.5rem;
+      padding: 0.35rem 0.6rem;
       border-radius: 6px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-left: 4px solid #38bdf8;
+      width: 100%;
     }
 
     .tide-row.low {
@@ -354,13 +357,13 @@
     }
 
     .tide-extremum {
-      font-size: 0.68rem;
+      font-size: 0.75rem;
       font-weight: 700;
       color: #f8fafc;
     }
 
     .tide-time {
-      font-size: 0.7rem;
+      font-size: 0.78rem;
       font-weight: 800;
       color: #38bdf8;
     }
@@ -699,7 +702,7 @@
     <div class="header-right">
       <div class="date" id="date">Lundi 1 janvier</div>
       <div class="nav-hint-row">
-        <div class="version-badge">v1.1.0</div>
+        <div class="version-badge">v1.1.8</div>
         <div class="nav-hint" id="nav-indicator">Vue 1/4 : Bienvenue (Entrée pour démarrer)</div>
       </div>
     </div>
@@ -888,11 +891,11 @@
       <div class="card-title">🌊 Marées Officielles (Saint-Lunaire)</div>
       <div class="tide-main-container">
         <div class="tide-center-wrapper">
-          <div class="tide-ext-badge high" id="tide-top-badge" style="margin-bottom: 0.15rem;">
+          <div class="tide-ext-badge high" id="tide-top-badge">
             <span>🌊 Pleine Mer</span>
             <span id="tide-top-val" style="font-size: 0.75rem; font-weight: 800;">--:--</span>
           </div>
-          <svg viewBox="0 0 200 200" style="width: 130px; height: 130px;">
+          <svg viewBox="0 0 200 200" style="width: 215px; height: 215px; max-height: 100%;">
             <circle cx="100" cy="100" r="94" fill="#141e30" stroke="url(#goldGrad)" stroke-width="6"/>
             <defs>
               <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -908,8 +911,21 @@
             <g stroke="#94a3b8" stroke-width="1.5" opacity="0.8">
               <line x1="100" y1="12" x2="100" y2="22" /><line x1="144" y1="24" x2="139" y2="33" /><line x1="176" y1="56" x2="167" y2="61" /><line x1="188" y1="100" x2="178" y2="100" stroke="#fff" stroke-width="2.5" /><line x1="176" y1="144" x2="167" y2="139" /><line x1="144" y1="176" x2="139" y2="167" /><line x1="100" y1="188" x2="100" y2="178" stroke="#fff" stroke-width="2.5" /><line x1="56" y1="176" x2="61" y2="167" /><line x1="24" y1="144" x2="33" y2="139" /><line x1="12" y1="100" x2="22" y2="100" stroke="#fff" stroke-width="2.5" /><line x1="24" y1="56" x2="33" y2="61" /><line x1="56" y1="24" x2="61" y2="33" />
             </g>
-            <g fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle" font-family="sans-serif">
-              <text x="100" y="38">1</text><text x="138" y="52">1</text><text x="162" y="82">2</text><text x="162" y="125">3</text><text x="138" y="155">4</text><text x="100" y="168">5</text><text x="62" y="155">5</text><text x="38" y="125">4</text><text x="38" y="82">3</text><text x="62" y="52">2</text>
+            <!-- Cadran d'horloge classique : 1 à 5 à gauche (11h à 7h), 1 à 5 à droite (1h à 5h), rien à 12h ni à 6h -->
+            <g fill="#94a3b8" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">
+              <!-- Côté gauche (heures 11, 10, 9, 8, 7 remplacées par 1, 2, 3, 4, 5) -->
+              <text x="63" y="38">1</text>
+              <text x="42" y="68">2</text>
+              <text x="35" y="104" stroke="#fff" stroke-width="0.3">3</text>
+              <text x="42" y="142">4</text>
+              <text x="63" y="170">5</text>
+              
+              <!-- Côté droit (heures 1, 2, 3, 4, 5 remplacées par 1, 2, 3, 4, 5) -->
+              <text x="137" y="38">1</text>
+              <text x="158" y="68">2</text>
+              <text x="165" y="104" stroke="#fff" stroke-width="0.3">3</text>
+              <text x="158" y="142">4</text>
+              <text x="137" y="170">5</text>
             </g>
             <g id="tide-needle" transform="rotate(45 100 100)">
               <line x1="100" y1="100" x2="100" y2="42" stroke="#34d399" stroke-width="5" stroke-linecap="round"/>
@@ -917,7 +933,7 @@
             </g>
             <circle cx="100" cy="100" r="9" fill="#141e30" stroke="#f59e0b" stroke-width="3"/>
           </svg>
-          <div class="tide-ext-badge low" id="tide-bot-badge" style="margin-top: 0.15rem;">
+          <div class="tide-ext-badge low" id="tide-bot-badge">
             <span>🏖️ Basse Mer</span>
             <span id="tide-bot-val" style="font-size: 0.75rem; font-weight: 800;">--:--</span>
           </div>
@@ -1202,15 +1218,26 @@
       }
     }
 
-    // GESTION CLAVIER : Flèches libres pour les listes, Touches Multimédias pour changer de vue
+    // GESTION CLAVIER : Touches Q/D pour PC, Touches Multimédia & Tablettes
     document.addEventListener('keydown', (event) => {
       const modalOpen = document.getElementById('map-modal').classList.contains('active');
 
       if (event.key === 'Escape' || event.key === 'Back' || event.keyCode === 10009 || event.keyCode === 27) {
         if (modalOpen) closeMapModal();
       } else if (!modalOpen) {
-        // Changement de vue via les touches Multimédia (Piste précédente / Piste suivante / MediaTrackPrevious / MediaTrackNext)
-        // Codes courants télécommandes : MediaTrackPrevious (177/272), MediaTrackNext (176/271), ChannelUp/Down etc.
+        // Raccourcis PC : Q (précédent) et D (suivant)
+        if (event.key === 'd' || event.key === 'D') {
+          showPage(currentPageIndex + 1);
+          event.preventDefault();
+          return;
+        }
+        if (event.key === 'q' || event.key === 'Q') {
+          showPage(currentPageIndex - 1);
+          event.preventDefault();
+          return;
+        }
+
+        // Touches Multimédia (Télécommande)
         if (event.key === 'MediaTrackNext' || event.keyCode === 271 || event.keyCode === 176) {
           showPage(currentPageIndex + 1);
           event.preventDefault();
