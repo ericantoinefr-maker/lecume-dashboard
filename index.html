@@ -662,6 +662,10 @@
 </head>
 <body>
 
+  <!-- Élément audio optionnel (remplacez l'URL src par un vrai fichier mp3 si besoin) -->
+  <audio id="welcome-audio" src="" preload="auto"></audio>
+  <audio id="departure-audio" src="" preload="auto"></audio>
+
   <!-- En-tête -->
   <header>
     <div>
@@ -682,7 +686,7 @@
     </div>
   </header>
 
-  <!-- VUE 1 : ACCUEIL & MESSAGE AUDIO BIENVENUE -->
+  <!-- VUE 1 : ACCUEIL -->
   <div class="view-page active" id="page-welcome">
     <div class="welcome-card">
       <div class="welcome-badge">🏠 Appartement "L'Écume" — Saint-Lunaire</div>
@@ -696,7 +700,7 @@
     </div>
   </div>
 
-  <!-- VUE 2 FUSIONNÉE : GUIDE COMPLET, LOISIRS, RESTOS & COMMERCES (SANS SCROLL) -->
+  <!-- VUE 2 : GUIDE COMPLET, LOISIRS, RESTOS & COMMERCES (SANS SCROLL) -->
   <div class="view-page" id="page-guide">
     
     <!-- Colonne 1 : Wi-Fi, Urgences & Environs -->
@@ -1161,16 +1165,16 @@
     }
 
     function playWelcomeSpeech() {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const text = "Bonjour et bienvenue à L'Écume, à Saint-Lunaire ! Nous espérons que vous passerez un excellent séjour. Vous trouverez toutes les informations pratiques, le guide complet et l'agenda directement sur ce tableau de bord. Bon séjour !";
-        const utterance = new SpeechSynthesisUtterance(text);
-        const voices = window.speechSynthesis.getVoices();
-        const frVoices = voices.filter(v => v.lang.startsWith('fr'));
-        if (frVoices.length > 0) utterance.voice = frVoices[0];
-        utterance.lang = 'fr-FR';
-        utterance.rate = 0.95;
-        window.speechSynthesis.speak(utterance);
+      const audio = document.getElementById('welcome-audio');
+      if (audio && audio.src) {
+        audio.play().catch(e => console.log("Lecture audio bloquée ou fichier manquant"));
+      }
+    }
+
+    function playDepartureSpeech() {
+      const audio = document.getElementById('departure-audio');
+      if (audio && audio.src) {
+        audio.play().catch(e => console.log("Lecture audio bloquée ou fichier manquant"));
       }
     }
 
@@ -1353,20 +1357,6 @@
       }
     }
     fetchWeather();
-
-    function playDepartureSpeech() {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const text = "Bonjour ! Nous espérons que votre séjour à L'Écume s'est très bien passé. Pour rappel, le départ s'effectue avant 11 heures. Merci de fermer les fenêtres, de sortir vos poubelles et de replacer les clés dans la boîte. Bon retour et à bientôt !";
-        const utterance = new SpeechSynthesisUtterance(text);
-        const voices = window.speechSynthesis.getVoices();
-        const frVoices = voices.filter(v => v.lang.startsWith('fr'));
-        if (frVoices.length > 0) utterance.voice = frVoices[0];
-        utterance.lang = 'fr-FR';
-        utterance.rate = 0.95;
-        window.speechSynthesis.speak(utterance);
-      }
-    }
   </script>
 </body>
 </html>
