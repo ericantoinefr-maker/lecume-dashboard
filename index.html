@@ -678,7 +678,7 @@
 </head>
 <body>
 
-  <!-- Éléments audio optionnels -->
+  <!-- Éléments audio -->
   <audio id="welcome-audio" src="bienvenue.mp3" preload="auto"></audio>
   <audio id="departure-audio" src="depart.mp3" preload="auto"></audio>
 
@@ -699,8 +699,8 @@
     <div class="header-right">
       <div class="date" id="date">Lundi 1 janvier</div>
       <div class="nav-hint-row">
-        <div class="version-badge">v1.0.8</div>
-        <div class="nav-hint" id="nav-indicator">Vue 1/4 : Bienvenue à L'Écume (Entrée ou ◀ ▶)</div>
+        <div class="version-badge">v1.1.0</div>
+        <div class="nav-hint" id="nav-indicator">Vue 1/4 : Bienvenue (Entrée pour démarrer)</div>
       </div>
     </div>
   </header>
@@ -719,7 +719,7 @@
     </div>
   </div>
 
-  <!-- VUE 2 : GUIDE COMPLET, LOISIRS, RESTOS & COMMERCES (SANS SCROLL) -->
+  <!-- VUE 2 : GUIDE COMPLET, LOISIRS, RESTOS & COMMERCES -->
   <div class="view-page" id="page-guide">
     
     <!-- Colonne 1 : Wi-Fi, Urgences & Environs -->
@@ -768,7 +768,7 @@
       </div>
     </div>
 
-    <!-- Colonne 2 : Lieux, Infos & Loisirs (Haut) + Commerces & Services (Bas) -->
+    <!-- Colonne 2 : Lieux, Infos & Loisirs + Commerces & Services -->
     <div class="guide-col">
       <div class="card" style="flex: 1; min-height: 0;">
         <div class="card-title">📍 Lieux, Infos & Loisirs</div>
@@ -835,7 +835,7 @@
       </div>
     </div>
 
-    <!-- Colonne 3 : TOUS les 9 Restaurants -->
+    <!-- Colonne 3 : Top 9 Restaurants -->
     <div class="guide-col">
       <div class="card" style="flex: 1; min-height: 0;">
         <div class="card-title">🍽️ Top 9 Restaurants</div>
@@ -882,22 +882,16 @@
 
   </div>
 
-  <!-- VUE 3 : OUTDOOR & CONDITIONS (Météo, Marées & Agenda) -->
+  <!-- VUE 3 : OUTDOOR & CONDITIONS -->
   <div class="view-page" id="page-dashboard">
-    
-    <!-- Colonne 1 : Grand Cadran Analogique Marées -->
     <div class="card">
       <div class="card-title">🌊 Marées Officielles (Saint-Lunaire)</div>
-      
       <div class="tide-main-container">
-        
         <div class="tide-center-wrapper">
-          
           <div class="tide-ext-badge high" id="tide-top-badge" style="margin-bottom: 0.15rem;">
             <span>🌊 Pleine Mer</span>
             <span id="tide-top-val" style="font-size: 0.75rem; font-weight: 800;">--:--</span>
           </div>
-
           <svg viewBox="0 0 200 200" style="width: 130px; height: 130px;">
             <circle cx="100" cy="100" r="94" fill="#141e30" stroke="url(#goldGrad)" stroke-width="6"/>
             <defs>
@@ -910,63 +904,32 @@
                 <stop offset="100%" stop-color="#0f172a"/>
               </linearGradient>
             </defs>
-
             <circle cx="100" cy="100" r="88" fill="url(#dialGrad)"/>
-
             <g stroke="#94a3b8" stroke-width="1.5" opacity="0.8">
-              <line x1="100" y1="12" x2="100" y2="22" />
-              <line x1="144" y1="24" x2="139" y2="33" />
-              <line x1="176" y1="56" x2="167" y2="61" />
-              <line x1="188" y1="100" x2="178" y2="100" stroke="#fff" stroke-width="2.5" />
-              <line x1="176" y1="144" x2="167" y2="139" />
-              <line x1="144" y1="176" x2="139" y2="167" />
-              <line x1="100" y1="188" x2="100" y2="178" stroke="#fff" stroke-width="2.5" />
-              <line x1="56" y1="176" x2="61" y2="167" />
-              <line x1="24" y1="144" x2="33" y2="139" />
-              <line x1="12" y1="100" x2="22" y2="100" stroke="#fff" stroke-width="2.5" />
-              <line x1="24" y1="56" x2="33" y2="61" />
-              <line x1="56" y1="24" x2="61" y2="33" />
+              <line x1="100" y1="12" x2="100" y2="22" /><line x1="144" y1="24" x2="139" y2="33" /><line x1="176" y1="56" x2="167" y2="61" /><line x1="188" y1="100" x2="178" y2="100" stroke="#fff" stroke-width="2.5" /><line x1="176" y1="144" x2="167" y2="139" /><line x1="144" y1="176" x2="139" y2="167" /><line x1="100" y1="188" x2="100" y2="178" stroke="#fff" stroke-width="2.5" /><line x1="56" y1="176" x2="61" y2="167" /><line x1="24" y1="144" x2="33" y2="139" /><line x1="12" y1="100" x2="22" y2="100" stroke="#fff" stroke-width="2.5" /><line x1="24" y1="56" x2="33" y2="61" /><line x1="56" y1="24" x2="61" y2="33" />
             </g>
-
             <g fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle" font-family="sans-serif">
-              <text x="100" y="38">1</text>
-              <text x="138" y="52">1</text>
-              <text x="162" y="82">2</text>
-              <text x="162" y="125">3</text>
-              <text x="138" y="155">4</text>
-              <text x="100" y="168">5</text>
-              <text x="62" y="155">5</text>
-              <text x="38" y="125">4</text>
-              <text x="38" y="82">3</text>
-              <text x="62" y="52">2</text>
+              <text x="100" y="38">1</text><text x="138" y="52">1</text><text x="162" y="82">2</text><text x="162" y="125">3</text><text x="138" y="155">4</text><text x="100" y="168">5</text><text x="62" y="155">5</text><text x="38" y="125">4</text><text x="38" y="82">3</text><text x="62" y="52">2</text>
             </g>
-
             <g id="tide-needle" transform="rotate(45 100 100)">
               <line x1="100" y1="100" x2="100" y2="42" stroke="#34d399" stroke-width="5" stroke-linecap="round"/>
               <circle cx="100" cy="42" r="5" fill="#e2e8f0"/>
             </g>
-
             <circle cx="100" cy="100" r="9" fill="#141e30" stroke="#f59e0b" stroke-width="3"/>
           </svg>
-
           <div class="tide-ext-badge low" id="tide-bot-badge" style="margin-top: 0.15rem;">
             <span>🏖️ Basse Mer</span>
             <span id="tide-bot-val" style="font-size: 0.75rem; font-weight: 800;">--:--</span>
           </div>
-
         </div>
-
         <div class="tide-schedule" id="tide-schedule-container">
           <div class="tide-row"><span class="tide-extremum">Chargement...</span></div>
         </div>
-
       </div>
     </div>
 
-    <!-- Colonne 2 : Météo & Eau -->
     <div class="card">
       <div class="card-title">☀️ Météo Locale & Température Eau</div>
-
       <div class="weather-main">
         <div class="weather-temp-group">
           <div class="weather-icon" id="w-icon">☀️</div>
@@ -980,7 +943,6 @@
           <div style="font-size: 0.65rem; margin-top: 0.1rem;" id="w-city">Saint-Lunaire</div>
         </div>
       </div>
-
       <div class="weather-meta-bar">
         <div class="meta-card">
           <div>
@@ -989,7 +951,6 @@
           </div>
           <div style="font-size: 0.6rem; color: #64748b; text-align: right;">Manche</div>
         </div>
-
         <div class="meta-card">
           <div>
             <div class="meta-label">☀️ Indice UV</div>
@@ -1001,7 +962,6 @@
           <div style="font-size: 0.58rem; color: #94a3b8; text-align: right; max-width: 70px;" id="uv-advice">--</div>
         </div>
       </div>
-
       <div>
         <div class="card-title" style="font-size: 0.75rem; margin-bottom: 0.2rem;">📅 Prévisions Météo 3 Jours</div>
         <div class="forecast-grid" id="forecast-grid">
@@ -1010,7 +970,6 @@
       </div>
     </div>
 
-    <!-- Colonne 3 : Événements & Cinéma à venir -->
     <div class="card">
       <div class="card-title">🎬 Agenda & Cinéma (Prochains Jours)</div>
       <div class="spots-list">
@@ -1040,7 +999,6 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <!-- VUE 4 : CHECKLIST JOUR DE DÉPART -->
@@ -1077,7 +1035,7 @@
     </div>
   </div>
 
-  <!-- MODAL GOOGLE MAPS PLEIN ÉCRAN -->
+  <!-- MODAL GOOGLE MAPS -->
   <div class="modal-overlay" id="map-modal">
     <div class="modal-header">
       <div class="modal-title" id="modal-title">Itinéraire Piéton</div>
@@ -1172,8 +1130,8 @@
 
     const pages = ['page-welcome', 'page-guide', 'page-dashboard', 'page-departure'];
     const navTitles = [
-      "Vue 1/4 : Bienvenue à L'Écume (Entrée ou ◀ ▶)",
-      "Vue 2/4 : Guide Complet, Loisirs, Restos & Commerces",
+      "Vue 1/4 : Bienvenue (Entrée pour démarrer)",
+      "Vue 2/4 : Guide, Loisirs, Restos & Commerces",
       "Vue 3/4 : Météo, Marées & Agenda",
       "Vue 4/4 : Jour de Départ"
     ];
@@ -1185,38 +1143,26 @@
 
     function playWelcomeSpeech() {
       const audio = document.getElementById('welcome-audio');
-      if (audio && audio.src) {
-        audio.play().catch(e => console.log("Lecture audio bloquée ou fichier manquant"));
-      }
+      if (audio) audio.play().catch(e => {});
     }
 
     function playDepartureSpeech() {
       const audio = document.getElementById('departure-audio');
-      if (audio && audio.src) {
-        audio.play().catch(e => console.log("Lecture audio bloquée ou fichier manquant"));
-      }
+      if (audio) audio.play().catch(e => {});
     }
 
     function openRouteMap(destinationQuery, displayTitle) {
       document.getElementById('modal-title').textContent = `Itinéraire : 274 Bd de Gaulle ➔ ${displayTitle}`;
       const mapContainer = document.getElementById('map-container');
-      
       const encodedOrigin = encodeURIComponent(originAddress);
       const encodedDest = encodeURIComponent(destinationQuery + ", Bretagne, France");
 
       mapContainer.innerHTML = `
-        <iframe
-          width="100%"
-          height="100%"
-          style="border:0;"
-          loading="lazy"
-          allowfullscreen
+        <iframe width="100%" height="100%" style="border:0;" loading="lazy" allowfullscreen
           src="https://maps.google.com/maps?saddr=${encodedOrigin}&daddr=${encodedDest}&output=embed">
         </iframe>
       `;
-
       document.getElementById('map-modal').classList.add('active');
-
       setTimeout(() => {
         const closeBtn = document.querySelector('.modal-close-btn');
         if (closeBtn) closeBtn.focus();
@@ -1232,7 +1178,6 @@
       if (index >= pages.length) index = 0;
 
       currentPageIndex = index;
-
       pages.forEach((pageId, i) => {
         const elem = document.getElementById(pageId);
         if (i === currentPageIndex) {
@@ -1247,35 +1192,47 @@
       if (currentPageIndex === 3) {
         playDepartureSpeech();
       }
-
       resetInactivityTimer();
     }
 
     function resetInactivityTimer() {
       clearTimeout(inactivityTimer);
       if (currentPageIndex !== 0) {
-        inactivityTimer = setTimeout(() => {
-          showPage(0);
-        }, 180000);
+        inactivityTimer = setTimeout(() => { showPage(0); }, 180000);
       }
     }
 
+    // GESTION CLAVIER : Flèches libres pour les listes, Touches Multimédias pour changer de vue
     document.addEventListener('keydown', (event) => {
       const modalOpen = document.getElementById('map-modal').classList.contains('active');
 
       if (event.key === 'Escape' || event.key === 'Back' || event.keyCode === 10009 || event.keyCode === 27) {
-        if (modalOpen) {
-          closeMapModal();
-        }
+        if (modalOpen) closeMapModal();
       } else if (!modalOpen) {
-        if (event.key === 'ArrowRight') {
+        // Changement de vue via les touches Multimédia (Piste précédente / Piste suivante / MediaTrackPrevious / MediaTrackNext)
+        // Codes courants télécommandes : MediaTrackPrevious (177/272), MediaTrackNext (176/271), ChannelUp/Down etc.
+        if (event.key === 'MediaTrackNext' || event.keyCode === 271 || event.keyCode === 176) {
           showPage(currentPageIndex + 1);
-        } else if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          return;
+        }
+        if (event.key === 'MediaTrackPrevious' || event.keyCode === 272 || event.keyCode === 177) {
           showPage(currentPageIndex - 1);
-        } else if (event.key === 'Enter' || event.key === ' ' || event.keyCode === 13) {
-          if (currentPageIndex === 0) {
+          event.preventDefault();
+          return;
+        }
+
+        // Sur la page d'accueil (Vue 1), Entrée ou Espace démarre
+        if (currentPageIndex === 0) {
+          if (event.key === 'Enter' || event.key === ' ' || event.keyCode === 13) {
             startDashboard();
-          } else if (document.activeElement && typeof document.activeElement.click === 'function') {
+          }
+          return;
+        }
+
+        // Validation par Entrée sur les cartes des autres vues
+        if (event.key === 'Enter' || event.key === ' ' || event.keyCode === 13) {
+          if (document.activeElement && typeof document.activeElement.click === 'function') {
             document.activeElement.click();
           }
         }
@@ -1290,7 +1247,6 @@
       const now = new Date();
       document.getElementById('clock').textContent = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
       document.getElementById('date').textContent = now.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-      
       const m = now.getMonth() + 1;
       const d = now.getDate();
       const saint = saintsFr[m] && saintsFr[m][d] ? saintsFr[m][d] : "Fête";
@@ -1340,7 +1296,6 @@
 
         const forecastContainer = document.getElementById('forecast-grid');
         let forecastHTML = "";
-
         for (let i = 1; i <= 3; i++) {
           if (!data.daily.time[i]) break;
           const fDate = new Date(data.daily.time[i]);
@@ -1360,7 +1315,6 @@
           `;
         }
         forecastContainer.innerHTML = forecastHTML;
-
       } catch (e) {
         document.getElementById('w-icon').textContent = "☀️";
         document.getElementById('w-temp').textContent = "22°C";
