@@ -93,6 +93,12 @@
       text-transform: capitalize;
     }
 
+    .nav-hint-row {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
     .nav-hint {
       font-size: 0.68rem;
       color: #38bdf8;
@@ -101,6 +107,16 @@
       border-radius: 6px;
       border: 1px solid #334155;
       font-weight: 600;
+    }
+
+    .version-badge {
+      font-size: 0.68rem;
+      color: #f59e0b;
+      background: #0f172a;
+      padding: 0.15rem 0.4rem;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      font-weight: 700;
     }
 
     .view-page {
@@ -662,9 +678,9 @@
 </head>
 <body>
 
-  <!-- Élément audio optionnel (remplacez l'URL src par un vrai fichier mp3 si besoin) -->
-  <audio id="welcome-audio" src="" preload="auto"></audio>
-  <audio id="departure-audio" src="" preload="auto"></audio>
+  <!-- Éléments audio optionnels -->
+  <audio id="welcome-audio" src="bienvenue.mp3" preload="auto"></audio>
+  <audio id="departure-audio" src="depart.mp3" preload="auto"></audio>
 
   <!-- En-tête -->
   <header>
@@ -682,7 +698,10 @@
 
     <div class="header-right">
       <div class="date" id="date">Lundi 1 janvier</div>
-      <div class="nav-hint" id="nav-indicator">Vue 1/4 : Bienvenue à L'Écume (Entrée ou ◀ ▶)</div>
+      <div class="nav-hint-row">
+        <div class="version-badge">v1.0.8</div>
+        <div class="nav-hint" id="nav-indicator">Vue 1/4 : Bienvenue à L'Écume (Entrée ou ◀ ▶)</div>
+      </div>
     </div>
   </header>
 
