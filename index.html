@@ -129,7 +129,7 @@
       display: grid;
     }
 
-    /* VUE 1 : ACCUEIL / SPLASH SCREEN */
+    /* VUE 1 : ACCUEIL / SPLASH SCREEN AVEC INFOS PRATIQUES */
     #page-welcome {
       grid-template-columns: 1fr;
     }
@@ -137,65 +137,146 @@
     .welcome-card {
       background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
       border-radius: 16px;
-      padding: 3rem;
+      padding: 1.5rem 2.5rem;
       border: 2px solid #38bdf8;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       text-align: center;
-      gap: 1.5rem;
+      gap: 0.8rem;
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+      overflow-y: auto;
     }
 
     .welcome-badge {
       background: rgba(56, 189, 248, 0.1);
       color: #38bdf8;
-      padding: 0.5rem 1.25rem;
+      padding: 0.3rem 1rem;
       border-radius: 20px;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       font-weight: 700;
       border: 1px solid rgba(56, 189, 248, 0.3);
     }
 
     .welcome-title {
-      font-size: 3rem;
+      font-size: 2.2rem;
       font-weight: 800;
       color: #f8fafc;
       letter-spacing: -1px;
     }
 
     .welcome-subtitle {
-      font-size: 1.25rem;
+      font-size: 0.95rem;
       color: #94a3b8;
       max-width: 700px;
-      line-height: 1.6;
+      line-height: 1.4;
+    }
+
+    .welcome-info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.6rem;
+      width: 100%;
+      text-align: left;
+    }
+
+    .welcome-info-box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 0.6rem 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .welcome-info-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #f59e0b;
+      text-transform: uppercase;
+    }
+
+    .welcome-info-content {
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      line-height: 1.3;
+    }
+
+    .remote-help-box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 0.6rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      width: 100%;
+    }
+
+    .remote-help-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #f59e0b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .remote-help-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.6rem;
+      text-align: left;
+    }
+
+    .remote-help-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      color: #cbd5e1;
+      background: #1e293b;
+      padding: 0.35rem 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #334155;
+    }
+
+    .remote-icon {
+      font-size: 1rem;
+      background: #0f172a;
+      padding: 0.15rem 0.35rem;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      font-weight: bold;
+      color: #38bdf8;
+      flex-shrink: 0;
     }
 
     .enter-btn {
       background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
       color: #0f172a;
       border: none;
-      padding: 1rem 2.5rem;
-      border-radius: 12px;
+      padding: 0.75rem 2rem;
+      border-radius: 10px;
       font-weight: 800;
-      font-size: 1.2rem;
+      font-size: 1.05rem;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.4);
+      gap: 0.6rem;
+      box-shadow: 0 8px 12px -3px rgba(56, 189, 248, 0.4);
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .enter-btn:hover {
       transform: scale(1.05);
-      box-shadow: 0 15px 20px -3px rgba(56, 189, 248, 0.6);
+      box-shadow: 0 12px 16px -3px rgba(56, 189, 248, 0.6);
     }
 
-    /* VUE 2 : OUTDOOR & CONDITIONS (MÉTÉO & MARÉES) */
+    /* VUE 2 : OUTDOOR & CONDITIONS (2 COLONNES : Marées & Météo) */
     #page-dashboard {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1.3fr;
       gap: 0.75rem;
     }
 
@@ -213,54 +294,6 @@
       gap: 0.5rem;
       height: 100%;
       min-height: 0;
-    }
-
-    .wifi-card-large {
-      background: #0f172a;
-      padding: 0.6rem 0.8rem;
-      border-radius: 10px;
-      border: 2px solid #38bdf8;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .wifi-header-row {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .qr-placeholder-large {
-      width: 45px;
-      height: 45px;
-      background: #ffffff;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #0f172a;
-      font-weight: bold;
-      font-size: 0.55rem;
-      flex-shrink: 0;
-    }
-
-    .wifi-text-box {
-      font-size: 0.85rem;
-      color: #94a3b8;
-      line-height: 1.3;
-    }
-
-    .emergency-box {
-      background: #1e293b;
-      padding: 0.4rem 0.6rem;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      color: #cbd5e1;
-      border-left: 4px solid #f59e0b;
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
     }
 
     .card {
@@ -372,7 +405,7 @@
       color: #f77171;
     }
 
-    /* MÉTÉO PLEINE HAUTEUR (SANS ESPACE VIDE) */
+    /* MÉTÉO PLEINE HAUTEUR */
     .weather-container {
       display: flex;
       flex-direction: column;
@@ -401,6 +434,28 @@
 
     .weather-icon {
       font-size: 2.6rem;
+      position: relative;
+      display: inline-block;
+      width: 2.6rem;
+      height: 2.6rem;
+      line-height: 2.6rem;
+    }
+
+    .weather-icon .moon-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 2.2rem;
+      z-index: 1;
+    }
+
+    .weather-icon .cloud-layer {
+      position: absolute;
+      bottom: -2px;
+      right: -6px;
+      font-size: 1.7rem;
+      z-index: 2;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
     }
 
     .weather-temp {
@@ -497,7 +552,7 @@
       color: #94a3b8;
     }
 
-    /* LISTES COMPACTES PLEINE HAUTEUR (CODES COULEURS DISTINCTS) */
+    /* LISTES COMPACTES PLEINE HAUTEUR */
     .spots-list {
       display: flex;
       flex-direction: column;
@@ -622,12 +677,13 @@
     .modal-close-btn {
       background: #ef4444;
       color: white;
-      border: none;
-      padding: 0.5rem 1.1rem;
+      border: 2px solid #f8fafc;
+      padding: 0.6rem 1.3rem;
       border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.85rem;
+      font-weight: 800;
+      font-size: 0.95rem;
       cursor: pointer;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
     }
 
     #map-container {
@@ -638,7 +694,7 @@
       background: #1e293b;
     }
 
-    /* VUE 4 : CHECKLIST JOUR DE DÉPART */
+    /* VUE 4 : CHECKLIST JOUR DE DÉPART & RÈGLES */
     #page-departure {
       grid-template-columns: 1fr;
     }
@@ -646,12 +702,14 @@
     .departure-card {
       background: #1e293b;
       border-radius: 14px;
-      padding: 1.5rem;
+      padding: 1.2rem;
       border: 2px solid #f59e0b;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 1rem;
+      gap: 0.8rem;
+      overflow-y: auto;
+      max-height: 100%;
     }
 
     .departure-header {
@@ -659,11 +717,11 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid #334155;
-      padding-bottom: 0.8rem;
+      padding-bottom: 0.6rem;
     }
 
     .departure-title {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       font-weight: 800;
       color: #f59e0b;
     }
@@ -671,42 +729,28 @@
     .checklist-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
+      gap: 0.6rem;
     }
 
     .checklist-item {
       background: #0f172a;
-      padding: 1rem;
-      border-radius: 10px;
+      padding: 0.7rem;
+      border-radius: 8px;
       display: flex;
       align-items: center;
-      gap: 0.85rem;
+      gap: 0.7rem;
       border-left: 4px solid #f59e0b;
     }
 
     .checklist-icon {
-      font-size: 1.8rem;
+      font-size: 1.4rem;
     }
 
     .checklist-text {
-      font-size: 1rem;
+      font-size: 0.85rem;
       font-weight: 600;
       color: #f8fafc;
-    }
-
-    .audio-btn {
-      background: #f59e0b;
-      color: #0f172a;
-      border: none;
-      padding: 0.65rem 1.25rem;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      width: fit-content;
+      line-height: 1.3;
     }
   </style>
 </head>
@@ -733,27 +777,74 @@
     <div class="header-right">
       <div class="date" id="date">Lundi 1 janvier</div>
       <div class="nav-hint-row">
-        <div class="version-badge">v1.2.8</div>
-        <div class="nav-hint" id="nav-indicator">Vue 1/4 : Bienvenue (Entrée pour démarrer)</div>
+        <div class="version-badge">v1.4.4</div>
+        <div class="nav-hint" id="nav-indicator">Vue 1/4 : Bienvenue (OK pour audio & démarrer)</div>
       </div>
     </div>
   </header>
 
-  <!-- VUE 1 : ACCUEIL -->
+  <!-- VUE 1 : ACCUEIL & INFOS PRATIQUES ESSENTIELLES -->
   <div class="view-page active" id="page-welcome">
     <div class="welcome-card">
       <div class="welcome-badge">🏠 Appartement "L'Écume" — Saint-Lunaire</div>
       <div class="welcome-title">Bienvenue pour vos Vacances !</div>
       <div class="welcome-subtitle">
-        Votre tableau de bord interactif est prêt : découvrez le guide complet, la météo, les marées et l'agenda de votre séjour.
+        Votre tableau de bord interactif est prêt : découvrez ci-dessous les informations essentielles de votre séjour.
       </div>
-      <button class="enter-btn" tabindex="0" onclick="startDashboard()">
-        ▶ Entrer dans L'Écume (Appuyer sur Entrée)
+
+      <!-- Grille d'informations pratiques et contacts -->
+      <div class="welcome-info-grid">
+        <div class="welcome-info-box">
+          <div class="welcome-info-title">📶 Connexion Wi-Fi</div>
+          <div class="welcome-info-content">
+            Réseau : <strong style="color:#38bdf8;">Wifi Eric</strong><br>
+            Code : <strong style="color:#f59e0b;">GrandHotel35</strong>
+          </div>
+        </div>
+        <div class="welcome-info-box">
+          <div class="welcome-info-title">📞 Conciergerie & Urgences</div>
+          <div class="welcome-info-content">
+            Conciergerie : <strong style="color:#38bdf8;">06 31 29 04 84</strong><br>
+            Urgences : <strong style="color:#ef4444;">112</strong><br>
+            <span style="font-size:0.68rem; color:#f59e0b;">⚠️ Le gardien n'est pas la conciergerie. Contactez directement la conciergerie pour toute remarque.</span>
+          </div>
+        </div>
+        <div class="welcome-info-box">
+          <div class="welcome-info-title">ℹ️ Règles & Stationnement</div>
+          <div class="welcome-info-content">
+            🤫 Calme de 22h à 8h<br>
+            🚭 Logement non-fumeur<br>
+            🚗 Stationnement interdit dans la résidence (sauf pour charger/décharger). Rues gratuites à l'extérieur.
+          </div>
+        </div>
+      </div>
+
+      <!-- VISUEL EXPLICATIF DE LA TÉLÉCOMMANDE / MANETTE -->
+      <div class="remote-help-box">
+        <div class="remote-help-title">🎮 Guide de navigation</div>
+        <div class="remote-help-grid">
+          <div class="remote-help-item">
+            <span class="remote-icon">⏮ / ⏭</span>
+            <span>Changer de page (sans audio)</span>
+          </div>
+          <div class="remote-help-item">
+            <span class="remote-icon">OK</span>
+            <span>Vue 1 : Audio & démarrer / Vue 3 : Ouvrir ou fermer les cartes</span>
+          </div>
+          <div class="remote-help-item">
+            <span class="remote-icon">⬆ ⬇ ⬅ ➡</span>
+            <span>Naviguer dans les listes & éléments</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="enter-btn" tabindex="0" onclick="startDashboardWithAudio()">
+        ▶ Entrer dans L'Écume (Appuyer sur OK pour l'audio & démarrer)
       </button>
     </div>
   </div>
 
-  <!-- VUE 2 : OUTDOOR & CONDITIONS (Météo, Marées & Agenda) -->
+  <!-- VUE 2 : OUTDOOR & CONDITIONS (Météo & Marées) -->
   <div class="view-page" id="page-dashboard">
     <div class="card">
       <div class="card-title">🌊 Marées Officielles (Saint-Lunaire)</div>
@@ -777,7 +868,6 @@
             </defs>
             <circle cx="100" cy="100" r="88" fill="url(#dialGrad)"/>
             
-            <!-- Graduations d'horloge classique (12 traits) -->
             <g stroke="#94a3b8" stroke-width="1.5" opacity="0.8">
               <line x1="100" y1="12" x2="100" y2="22" />
               <line x1="150" y1="26" x2="143" y2="35" />
@@ -793,7 +883,6 @@
               <line x1="50" y1="26" x2="57" y2="35" />
             </g>
 
-            <!-- Chiffres demandés : Cadran classique sans 12 ni 6 -->
             <g fill="#94a3b8" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">
               <text x="63" y="38">1</text>
               <text x="42" y="68">2</text>
@@ -825,14 +914,16 @@
       </div>
     </div>
 
-    <!-- CARTE MÉTÉO (Modèle Météo-France / AROME) -->
+    <!-- CARTE MÉTÉO & PHASE LUNAIRE NOCTURNE -->
     <div class="card">
       <div class="card-title">☀️ Météo Météo-France (AROME) & Eau</div>
       <div class="weather-container">
         
         <div class="weather-main">
           <div class="weather-temp-group">
-            <div class="weather-icon" id="w-icon">☀️</div>
+            <div class="weather-icon" id="w-icon">
+              <span class="moon-layer">🌙</span>
+            </div>
             <div>
               <div class="weather-temp" id="w-temp">--°C</div>
               <div style="font-size: 0.85rem; color: #94a3b8;" id="w-desc">Chargement...</div>
@@ -852,15 +943,15 @@
             </div>
             <div style="font-size: 0.7rem; color: #64748b; text-align: right;">Manche</div>
           </div>
-          <div class="meta-card">
-            <div>
+          
+          <div class="meta-card" id="dynamic-meta-card">
+            <div id="dynamic-meta-content">
               <div class="meta-label">☀️ Indice UV</div>
               <div style="display: flex; align-items: center; gap: 0.4rem; margin-top: 0.1rem;">
                 <span class="meta-val" id="uv-val">--</span>
                 <span class="uv-badge" id="uv-badge" style="background-color: #eab308;">Modéré</span>
               </div>
             </div>
-            <div style="font-size: 0.65rem; color: #94a3b8; text-align: right; max-width: 85px;" id="uv-advice">--</div>
           </div>
         </div>
 
@@ -873,60 +964,13 @@
 
       </div>
     </div>
-
-    <div class="card">
-      <div class="card-title">🎬 Agenda & Cinéma (Prochains Jours)</div>
-      <div class="spots-list">
-        <div class="spot-card activity-card" tabindex="0" onclick="openRouteMap('Centre Culturel Jean Rochefort Saint-Lunaire', 'Exposition Gaëlithe')">
-          <div class="spot-left"><span class="spot-title">🎨 Expo : Gaëlithe</span><span class="spot-hours">Jusqu'au 02/09 · La Potinière</span></div>
-          <span class="spot-badge activity">En cours</span>
-        </div>
-        <div class="spot-card activity-card" tabindex="0" onclick="openRouteMap('Centre Culturel Jean Rochefort Saint-Lunaire', 'Cinéma Le Familial - Pour le plaisir')">
-          <div class="spot-left"><span class="spot-title">🎬 Cinéma : Pour le plaisir</span><span class="spot-hours">Ce soir · 21h00 (VF)</span></div>
-          <span class="spot-badge activity">Ce soir</span>
-        </div>
-        <div class="spot-card activity-card" tabindex="0" onclick="openRouteMap('Centre Culturel Jean Rochefort Saint-Lunaire', 'Atelier couture Le fil de Saint-Lu')">
-          <div class="spot-left"><span class="spot-title">🧵 Atelier : Le fil de Saint-Lu</span><span class="spot-hours">Ven. 28/08 · Raccommodage</span></div>
-          <span class="spot-badge activity">Ven. 28</span>
-        </div>
-        <div class="spot-card activity-card" tabindex="0" onclick="openRouteMap('Centre Culturel Jean Rochefort Saint-Lunaire', 'Cinéma Le Familial - The Last Viking')">
-          <div class="spot-left"><span class="spot-title">🎬 Cinéma : The Last Viking</span><span class="spot-hours">Mer. 26/08 · 20h30 (VOSTFR)</span></div>
-          <span class="spot-badge activity">Mer. 26</span>
-        </div>
-        <div class="spot-card activity-card" tabindex="0" onclick="openRouteMap('Plage de Longchamp Saint-Lunaire', 'Fête de la Glisse')">
-          <div class="spot-left"><span class="spot-title">🏄‍♂️ Fête de la Glisse</span><span class="spot-hours">Sam. 29/08 · 10h-18h (Longchamp)</span></div>
-          <span class="spot-badge activity">Sam. 29</span>
-        </div>
-        <div class="spot-card activity-card" tabindex="0" onclick="openRouteMap('Centre Culturel Jean Rochefort Saint-Lunaire', 'Cinéma Le Familial - Sur la route d\'Omaha')">
-          <div class="spot-left"><span class="spot-title">🎬 Cinéma : Sur la route d'Omaha</span><span class="spot-hours">Ven. 28/08 · 20h30 (VOSTFR)</span></div>
-          <span class="spot-badge activity">Ven. 28</span>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- VUE 3 : GUIDE COMPLET, LOISIRS, RESTOS & COMMERCES -->
   <div class="view-page" id="page-guide">
     
-    <!-- Colonne 1 : Wi-Fi, Urgences & Environs -->
+    <!-- Colonne 1 : Environs -->
     <div class="guide-col">
-      <div class="card" style="height: auto; flex: 0 0 auto;">
-        <div class="card-title">🏡 L'Écume : Wi-Fi & Urgences</div>
-        <div class="wifi-card-large">
-          <div class="wifi-header-row">
-            <div class="qr-placeholder-large"><span>[QR CODE]</span></div>
-            <div class="wifi-text-box">
-              Wi-Fi : <strong style="color: #38bdf8;">LE_CUME_SECURE</strong><br>
-              Code : <strong style="color: #f59e0b;">Vacances2026!</strong>
-            </div>
-          </div>
-          <div class="emergency-box">
-            <div>📞 Conciergerie : <strong style="color: #38bdf8;">06 00 00 00 00</strong></div>
-            <div>🚨 Urgences : <strong style="color: #ef4444;">112</strong></div>
-          </div>
-        </div>
-      </div>
-
       <div class="card" style="flex: 1; min-height: 0;">
         <div class="card-title">🚗 Environs à Découvrir</div>
         <div class="spots-list">
@@ -954,11 +998,19 @@
       </div>
     </div>
 
-    <!-- Colonne 2 : Lieux, Infos & Loisirs + Commerces & Services -->
+    <!-- Colonne 2 : Lieux & Commerces -->
     <div class="guide-col">
-      <div class="card" style="flex: 1; min-height: 0;">
-        <div class="card-title">📍 Lieux, Infos & Loisirs</div>
+      <div class="card" style="flex: 1.3; min-height: 0;">
+        <div class="card-title">📍 Lieux, Infos, Loisirs & Culture</div>
         <div class="spots-list">
+          <div class="spot-card activity-card" tabindex="0" onclick="openRouteMap('Centre Culturel Jean Rochefort Saint-Lunaire', 'Cinéma Le Familial')">
+            <div class="spot-left"><span class="spot-title">🎬 Cinéma Le Familial</span><span class="spot-hours">Séances selon programmation</span></div>
+            <span class="spot-badge activity">Cinéma</span>
+          </div>
+          <div class="spot-card activity-card" tabindex="0" onclick="openRouteMap('Médiathèque Saint-Lunaire', 'Médiathèque')">
+            <div class="spot-left"><span class="spot-title">📚 Médiathèque municipale</span><span class="spot-hours">Mardi au samedi (Horaires variés)</span></div>
+            <span class="spot-badge activity">Culture</span>
+          </div>
           <div class="spot-card environs-card" tabindex="0" onclick="openRouteMap('Office de Tourisme Saint-Lunaire', 'Office de Tourisme')">
             <div class="spot-left"><span class="spot-title">ℹ️ Office de Tourisme</span><span class="spot-hours">09h30 - 18h00</span></div>
             <span class="spot-badge environs">Infos</span>
@@ -970,10 +1022,6 @@
           <div class="spot-card activity-card" tabindex="0" onclick="openRouteMap('Mini golf de la plage Saint-Lunaire', 'Mini-golf de la Plage')">
             <div class="spot-left"><span class="spot-title">⛳ Mini-Golf de la Plage</span><span class="spot-hours">10h30 - 18h30</span></div>
             <span class="spot-badge activity">Loisirs</span>
-          </div>
-          <div class="spot-card environs-card" tabindex="0" onclick="openRouteMap('Jardin du Presbytère Saint-Lunaire', 'Jardin du Presbytère')">
-            <div class="spot-left"><span class="spot-title">🌿 Jardin du Presbytère</span><span class="spot-hours">09h30 - 18h00</span></div>
-            <span class="spot-badge environs">Jardin</span>
           </div>
           <div class="spot-card environs-card" tabindex="0" onclick="openRouteMap('Plage de Longchamp Saint-Lunaire', 'Plage de Longchamp')">
             <div class="spot-left"><span class="spot-title">🏖️ Plage de Longchamp</span><span class="spot-hours">Accès libre 24h/24</span></div>
@@ -1004,14 +1052,6 @@
           <div class="spot-card commerce-card" tabindex="0" onclick="openRouteMap('80 Rue de la Grève Saint-Lunaire', 'L\'Épigraphe (Librairie)')">
             <div class="spot-left"><span class="spot-title">L'Épigraphe (Librairie)</span><span class="spot-hours">08h30 - 19h00</span></div>
             <span class="spot-badge commerce">Librairie</span>
-          </div>
-          <div class="spot-card commerce-card" tabindex="0" onclick="openRouteMap('80 Rue de la Grève Saint-Lunaire', 'La Cabine')">
-            <div class="spot-left"><span class="spot-title">La Cabine (Plage)</span><span class="spot-hours">Articles de plage</span></div>
-            <span class="spot-badge commerce">Plage</span>
-          </div>
-          <div class="spot-card commerce-card" tabindex="0" onclick="openRouteMap('La Poste Saint-Lunaire', 'La Poste')">
-            <div class="spot-left"><span class="spot-title">La Poste / Agence</span><span class="spot-hours">09h00 - 17h00</span></div>
-            <span class="spot-badge commerce">Services</span>
           </div>
           <div class="spot-card commerce-card" tabindex="0" onclick="openRouteMap('Tabac Presse Saint-Lunaire', 'Tabac Presse')">
             <div class="spot-left"><span class="spot-title">Tabac Presse du Bourg</span><span class="spot-hours">07h30 - 19h30</span></div>
@@ -1074,29 +1114,34 @@
       <div class="departure-header">
         <div>
           <div class="departure-title">👋 Bon retour de L'Écume !</div>
-          <div style="color: #cbd5e1; font-size: 1.05rem; margin-top: 0.2rem;">Merci d'avoir séjourné à Saint-Lunaire ! Merci d'effectuer le départ avant 11h00.</div>
+          <div style="color: #cbd5e1; font-size: 0.95rem; margin-top: 0.15rem;">Merci d'effectuer le départ avant 10h00. Bon retour et au plaisir !</div>
         </div>
-        <button class="audio-btn" tabindex="0" onclick="playDepartureSpeech()">
-          🔊 Écouter les consignes
-        </button>
       </div>
 
       <div class="checklist-grid">
         <div class="checklist-item">
-          <div class="checklist-icon">🗝️</div>
-          <div class="checklist-text">Remettre les clés dans la boîte à clés sécurisée.</div>
+          <div class="checklist-icon">🧺</div>
+          <div class="checklist-text">Rassembler toutes les serviettes de bain sales.</div>
         </div>
         <div class="checklist-item">
           <div class="checklist-icon">🗑️</div>
-          <div class="checklist-text">Vider le réfrigérateur et sortir les poubelles (bac jaune / ordure).</div>
+          <div class="checklist-text">Jeter les ordures : local poubelle à l'extérieur (vers la gauche en sortant de l'immeuble vers la plage, porte avec l'inscription "Poubelles" donnant sur le parking).</div>
         </div>
         <div class="checklist-item">
           <div class="checklist-icon">💡</div>
-          <div class="checklist-text">Fermer toutes les fenêtres et éteindre les lumières et chauffages.</div>
+          <div class="checklist-text">Éteindre toutes les lumières et chauffages.</div>
         </div>
         <div class="checklist-item">
-          <div class="checklist-icon">⭐</div>
-          <div class="checklist-text">Un grand merci de laisser un commentaire sur Airbnb !</div>
+          <div class="checklist-icon">🗝️</div>
+          <div class="checklist-text">Remettre la clé dans la boîte à clés sécurisée.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="checklist-icon">🚪</div>
+          <div class="checklist-text">Fermer toutes les fenêtres et verrouiller la porte à clé.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="checklist-icon">📖</div>
+          <div class="checklist-text">Laisser un petit mot chaleureux dans le livre d'or (bienvenue !).</div>
         </div>
       </div>
     </div>
@@ -1106,7 +1151,7 @@
   <div class="modal-overlay" id="map-modal">
     <div class="modal-header">
       <div class="modal-title" id="modal-title">Itinéraire Piéton</div>
-      <button class="modal-close-btn" tabindex="0" onclick="closeMapModal()">❌ Fermer (Retour)</button>
+      <button class="modal-close-btn" id="modal-close-button" tabindex="0" onclick="closeMapModal()">❌ Fermer (Retour)</button>
     </div>
     <div id="map-container"></div>
   </div>
@@ -1204,25 +1249,16 @@
 
     const pages = ['page-welcome', 'page-dashboard', 'page-guide', 'page-departure'];
     const navTitles = [
-      "Vue 1/4 : Bienvenue (Entrée pour démarrer)",
-      "Vue 2/4 : Météo, Marées & Agenda",
-      "Vue 3/4 : Guide, Loisirs, Restos & Commerces",
-      "Vue 4/4 : Jour de Départ"
+      "Vue 1/4 : Bienvenue & Infos Pratiques",
+      "Vue 2/4 : Météo & Marées",
+      "Vue 3/4 : Guide, Culture, Restos & Commerces",
+      "Vue 4/4 : Jour de Départ & Règles"
     ];
 
-    function startDashboard() {
-      playWelcomeSpeech();
-      showPage(1);
-    }
-
-    function playWelcomeSpeech() {
+    function startDashboardWithAudio() {
       const audio = document.getElementById('welcome-audio');
       if (audio) audio.play().catch(e => {});
-    }
-
-    function playDepartureSpeech() {
-      const audio = document.getElementById('departure-audio');
-      if (audio) audio.play().catch(e => {});
+      showPage(1);
     }
 
     function openRouteMap(destinationQuery, displayTitle) {
@@ -1238,7 +1274,7 @@
       `;
       document.getElementById('map-modal').classList.add('active');
       setTimeout(() => {
-        const closeBtn = document.querySelector('.modal-close-btn');
+        const closeBtn = document.getElementById('modal-close-button');
         if (closeBtn) closeBtn.focus();
       }, 100);
     }
@@ -1262,20 +1298,41 @@
       });
 
       document.getElementById('nav-indicator').textContent = navTitles[currentPageIndex];
-
+      
       if (currentPageIndex === 3) {
-        playDepartureSpeech();
+        const depAudio = document.getElementById('departure-audio');
+        if (depAudio) depAudio.play().catch(e => {});
       }
       resetInactivityTimer();
     }
 
     function resetInactivityTimer() {
       clearTimeout(inactivityTimer);
-      // En cas d'inactivité, retour à la Vue 2 (Météo) au lieu de l'accueil
       inactivityTimer = setTimeout(() => { showPage(1); }, 180000);
     }
 
-    // GESTION CLAVIER : Touches Q/D pour PC, Touches Multimédia & Tablettes
+    function getMoonPhaseData() {
+      const now = new Date();
+      const knownNewMoon = new Date('2026-01-18T20:52:00Z');
+      const lunarCycle = 29.53058770576 * 24 * 60 * 60 * 1000;
+      const diff = now.getTime() - knownNewMoon.getTime();
+      const phase = (diff % lunarCycle) / lunarCycle;
+      const normalizedPhase = phase < 0 ? phase + 1 : phase;
+
+      let name = "Nouvelle Lune";
+      let icon = "🌑";
+      if (normalizedPhase > 0.03 && normalizedPhase < 0.22) { name = "Premier Croissant"; icon = "🌒"; }
+      else if (normalizedPhase >= 0.22 && normalizedPhase <= 0.28) { name = "Premier Quartier"; icon = "🌓"; }
+      else if (normalizedPhase > 0.28 && normalizedPhase < 0.47) { name = "Gibbeuse Croissante"; icon = "🌔"; }
+      else if (normalizedPhase >= 0.47 && normalizedPhase <= 0.53) { name = "Pleine Lune"; icon = "🌕"; }
+      else if (normalizedPhase > 0.53 && normalizedPhase < 0.72) { name = "Gibbeuse Décroissante"; icon = "🌖"; }
+      else if (normalizedPhase >= 0.72 && normalizedPhase <= 0.78) { name = "Dernier Quartier"; icon = "🌗"; }
+      else if (normalizedPhase > 0.78 && normalizedPhase < 0.97) { name = "Dernier Croissant"; icon = "🌘"; }
+
+      return { name, icon };
+    }
+
+    // GESTION CLAVIER & TÉLÉCOMMANDE
     document.addEventListener('keydown', (event) => {
       const modalOpen = document.getElementById('map-modal').classList.contains('active');
 
@@ -1304,13 +1361,15 @@
         }
         if (currentPageIndex === 0) {
           if (event.key === 'Enter' || event.key === ' ' || event.keyCode === 13) {
-            startDashboard();
+            startDashboardWithAudio();
+            event.preventDefault();
           }
           return;
         }
         if (event.key === 'Enter' || event.key === ' ' || event.keyCode === 13) {
           if (document.activeElement && typeof document.activeElement.click === 'function') {
             document.activeElement.click();
+            event.preventDefault();
           }
         }
       }
@@ -1332,12 +1391,22 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    function getWeatherInfo(code) {
-      if (code === 0) return { icon: "☀️", text: "Ensoleillé" };
-      if (code <= 3) return { icon: "⛅", text: "Éclaircies" };
-      if (code <= 48) return { icon: "🌫️", text: "Brouillard" };
-      if (code <= 82) return { icon: "🌧️", text: "Pluie" };
-      return { icon: "🌩️", text: "Variable" };
+    function getWeatherInfo(code, isNight = false) {
+      if (code === 0) {
+        return { 
+          html: isNight ? '<span class="moon-layer">🌙</span>' : '☀️', 
+          text: isNight ? "Dégagé" : "Ensoleillé" 
+        };
+      }
+      if (code <= 3) {
+        return { 
+          html: isNight ? '<span class="moon-layer">🌙</span><span class="cloud-layer">☁️</span>' : '⛅', 
+          text: "Éclaircies" 
+        };
+      }
+      if (code <= 48) return { html: '🌫️', text: "Brouillard" };
+      if (code <= 82) return { html: '🌧️', text: "Pluie" };
+      return { html: '🌩️', text: "Variable" };
     }
 
     function getUVInfo(uv) {
@@ -1354,17 +1423,45 @@
         if (!res.ok) throw new Error("Erreur réseau");
         const data = await res.json();
         
-        document.getElementById('w-icon').textContent = getWeatherInfo(data.current.weather_code).icon;
+        const now = new Date();
+        let isNight = false;
+        if (data.daily && data.daily.sunrise[0] && data.daily.sunset[0]) {
+          const sunriseTime = new Date(data.daily.sunrise[0]);
+          const sunsetTime = new Date(data.daily.sunset[0]);
+          isNight = now < sunriseTime || now > sunsetTime;
+        }
+
+        const currentWeather = getWeatherInfo(data.current.weather_code, isNight);
+        document.getElementById('w-icon').innerHTML = currentWeather.html;
         document.getElementById('w-temp').textContent = `${Math.round(data.current.temperature_2m)}°C`;
-        document.getElementById('w-desc').textContent = getWeatherInfo(data.current.weather_code).text;
+        document.getElementById('w-desc').textContent = currentWeather.text;
         document.getElementById('w-wind').textContent = `${Math.round(data.current.wind_speed_10m)} km/h`;
 
-        const uv = data.current.uv_index || 4;
-        document.getElementById('uv-val').textContent = Math.round(uv * 10) / 10;
-        const b = document.getElementById('uv-badge');
-        b.textContent = getUVInfo(uv).text;
-        b.style.backgroundColor = getUVInfo(uv).color;
-        document.getElementById('uv-advice').textContent = getUVInfo(uv).advice;
+        const dynamicMetaCard = document.getElementById('dynamic-meta-card');
+        if (isNight) {
+          const moon = getMoonPhaseData();
+          dynamicMetaCard.innerHTML = `
+            <div>
+              <div class="meta-label">🌙 Phase Lunaire</div>
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.1rem;">
+                <span style="font-size: 1.4rem;">${moon.icon}</span>
+                <span class="meta-val" style="font-size: 0.95rem; color: #facc15;">${moon.name}</span>
+              </div>
+            </div>
+          `;
+        } else {
+          const uv = data.current.uv_index || 4;
+          dynamicMetaCard.innerHTML = `
+            <div>
+              <div class="meta-label">☀️ Indice UV</div>
+              <div style="display: flex; align-items: center; gap: 0.4rem; margin-top: 0.1rem;">
+                <span class="meta-val" id="uv-val">${Math.round(uv * 10) / 10}</span>
+                <span class="uv-badge" id="uv-badge" style="background-color: ${getUVInfo(uv).color};">${getUVInfo(uv).text}</span>
+              </div>
+            </div>
+            <div style="font-size: 0.65rem; color: #94a3b8; text-align: right; max-width: 85px;">${getUVInfo(uv).advice}</div>
+          `;
+        }
 
         if (data.daily && data.daily.sunrise[0]) {
           document.getElementById('sunrise-time').textContent = new Date(data.daily.sunrise[0]).toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'});
@@ -1377,7 +1474,7 @@
           if (!data.daily.time[i]) break;
           const fDate = new Date(data.daily.time[i]);
           const dayLabel = fDate.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric' });
-          const fInfo = getWeatherInfo(data.daily.weather_code[i]);
+          const fInfo = getWeatherInfo(data.daily.weather_code[i], false);
           const maxT = Math.round(data.daily.temperature_2m_max[i]);
           const minT = Math.round(data.daily.temperature_2m_min[i]);
           const maxUV = Math.round(data.daily.uv_index_max[i] || 3);
@@ -1385,7 +1482,7 @@
           forecastHTML += `
             <div class="forecast-box">
               <div class="forecast-day">${dayLabel}</div>
-              <div style="font-size: 1.3rem;">${fInfo.icon}</div>
+              <div style="font-size: 1.3rem;">${typeof fInfo.html === 'string' && fInfo.html.includes('moon-layer') ? '⛅' : fInfo.html}</div>
               <div class="forecast-temps">${maxT}° <span class="min">${minT}°</span></div>
               <div class="forecast-uv">UV : ${maxUV}</div>
             </div>
@@ -1393,7 +1490,7 @@
         }
         forecastContainer.innerHTML = forecastHTML;
       } catch (e) {
-        document.getElementById('w-icon').textContent = "☀️";
+        document.getElementById('w-icon').innerHTML = '<span class="moon-layer">🌙</span>';
         document.getElementById('w-temp').textContent = "22°C";
         document.getElementById('w-desc').textContent = "Ensoleillé";
         document.getElementById('w-wind').textContent = "15 km/h";
