@@ -757,7 +757,7 @@
     <div class="header-right">
       <div class="date" id="date">Lundi 1 janvier</div>
       <div class="nav-hint-row">
-        <div class="version-badge">v1.4.5</div>
+        <div class="version-badge">v1.4.6</div>
         <div class="nav-hint" id="nav-indicator">Vue 1/3 : Bienvenue & Infos Pratiques</div>
       </div>
     </div>
@@ -1137,6 +1137,26 @@
   </div>
 
   <script>
+    // --- SYSTÈME DE MISE À JOUR AUTOMATIQUE (POLLING VERSION) ---
+    const currentAppVersion = "1.4.6";
+
+    async function checkRemoteVersion() {
+      try {
+        const response = await fetch('version.json?_t=' + new Date().getTime(), { cache: 'no-store' });
+        if (!response.ok) return;
+        const data = await response.json();
+        if (data.version && data.version !== currentAppVersion) {
+          console.log("Nouvelle version détectée, rechargement...");
+          window.location.reload(true);
+        }
+      } catch (err) {
+        console.log("Vérification de mise à jour impossible (hors-ligne)");
+      }
+    }
+    // Vérifie toutes les 10 minutes (600000 ms) si un commit a mis à jour version.json
+    setInterval(checkRemoteVersion, 600000);
+
+
     async function initTidesModule() {
       try {
         const response = await fetch("https://coefmaree.fr/api/v1/tides/saint-lunaire.json");
@@ -1311,8 +1331,6 @@
       const audio = document.getElementById('welcome-audio');
       if (audio) {
         audio.play().catch(e => {});
-        // L'audio est joué, mais on ne change PAS de vue automatiquement. 
-        // On attend que l'utilisateur effectue son premier changement de vue manuel.
         audio.onended = () => {
           audioFinished = true;
         };
