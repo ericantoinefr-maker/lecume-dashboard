@@ -580,37 +580,17 @@
       background: #1e293b;
     }
 
-    .spot-card.environs-card {
-      border-left-color: #38bdf8;
-    }
-    .spot-badge.environs {
-      background: #082f49;
-      color: #38bdf8;
-    }
+    .spot-card.environs-card { border-left-color: #38bdf8; }
+    .spot-badge.environs { background: #082f49; color: #38bdf8; }
 
-    .spot-card.commerce-card {
-      border-left-color: #10b981;
-    }
-    .spot-badge.commerce {
-      background: #065f46;
-      color: #6ee7b7;
-    }
+    .spot-card.commerce-card { border-left-color: #10b981; }
+    .spot-badge.commerce { background: #065f46; color: #6ee7b7; }
 
-    .spot-card.resto-card {
-      border-left-color: #f59e0b;
-    }
-    .spot-badge.resto {
-      background: #451a03;
-      color: #f59e0b;
-    }
+    .spot-card.resto-card { border-left-color: #f59e0b; }
+    .spot-badge.resto { background: #451a03; color: #f59e0b; }
 
-    .spot-card.activity-card {
-      border-left-color: #ec4899;
-    }
-    .spot-badge.activity {
-      background: #500724;
-      color: #f472b6;
-    }
+    .spot-card.activity-card { border-left-color: #ec4899; }
+    .spot-badge.activity { background: #500724; color: #f472b6; }
 
     .spot-left {
       display: flex;
@@ -777,8 +757,8 @@
     <div class="header-right">
       <div class="date" id="date">Lundi 1 janvier</div>
       <div class="nav-hint-row">
-        <div class="version-badge">v1.4.4</div>
-        <div class="nav-hint" id="nav-indicator">Vue 1/4 : Bienvenue (OK pour audio & démarrer)</div>
+        <div class="version-badge">v1.4.5</div>
+        <div class="nav-hint" id="nav-indicator">Vue 1/3 : Bienvenue & Infos Pratiques</div>
       </div>
     </div>
   </header>
@@ -1141,7 +1121,7 @@
         </div>
         <div class="checklist-item">
           <div class="checklist-icon">📖</div>
-          <div class="checklist-text">Laisser un petit mot chaleureux dans le livre d'or (bienvenue !).</div>
+          <div class="checklist-text">Laisser un mot chaleureux dans le livre d'or (bienvenue !).</div>
         </div>
       </div>
     </div>
@@ -1244,21 +1224,101 @@
 
     const originAddress = "274 Boulevard du Général de Gaulle, 35800 Saint-Lunaire";
 
+    let planningData = { arrivals: [], departures: [] };
     let currentPageIndex = 0;
     let inactivityTimer = null;
+    let audioFinished = false;        // Indique si l'audio d'accueil est terminé
+    let firstManualChangeDone = false; // Indique si le voyageur a changé de vue manuellement pour la première fois
 
     const pages = ['page-welcome', 'page-dashboard', 'page-guide', 'page-departure'];
-    const navTitles = [
-      "Vue 1/4 : Bienvenue & Infos Pratiques",
-      "Vue 2/4 : Météo & Marées",
-      "Vue 3/4 : Guide, Culture, Restos & Commerces",
-      "Vue 4/4 : Jour de Départ & Règles"
+    const pageNames = [
+      "Bienvenue & Infos Pratiques",
+      "Météo & Marées",
+      "Guide, Culture, Restos & Commerces",
+      "Jour de Départ & Règles"
     ];
+
+    // --- LOGIQUE PLANNING & SÉJOUR ---
+    function parseFrenchDate(dateStr) {
+      const parts = dateStr.split('/');
+      if (parts.length !== 3) return null;
+      return new Date(parts[2], parts[1] - 1, parts[0]);
+    }
+
+    function formatDateToFrench(date) {
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+
+    function getStayInfo() {
+      const now = new Date();
+      const todayDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const arrivals = planningData.arrivals || [];
+      const departures = planningData.departures || [];
+
+      for (let i = 0; i < arrivals.length; i++) {
+        const arrDate = parseFrenchDate(arrivals[i]);
+        const depDate = parseFrenchDate(departures[i]);
+
+        if (arrDate && depDate) {
+          if (todayDate >= arrDate && todayDate <= depDate) {
+            return { isStay: true, departureStr: departures[i] };
+          }
+        }
+      }
+      return { isStay: false };
+    }
+
+    function isMorningDepartureWindow() {
+      const now = new Date();
+      const todayStr = formatDateToFrench(now);
+      const currentHour = now.getHours();
+      const stayInfo = getStayInfo();
+      return stayInfo.isStay && stayInfo.departureStr === todayStr && currentHour < 13;
+    }
+
+    // Retourne les indices de pages accessibles selon le contexte (toujours 3 vues exactement)
+    function getAccessiblePages() {
+      if (isMorningDepartureWindow()) {
+        return [1, 2, 3]; // Dashboard, Guide, Départ (La vue d'accueil index 0 est exclue)
+      } else {
+        return [0, 1, 2]; // Accueil, Dashboard, Guide (La vue de départ index 3 est exclue)
+      }
+    }
+
+    async function loadPlanningAndInit() {
+      try {
+        const response = await fetch('planning.json');
+        planningData = await response.json();
+      } catch (e) {
+        console.log("planning.json non trouvé, mode par défaut actif");
+      }
+
+      evaluateInitialContext();
+    }
+
+    function evaluateInitialContext() {
+      if (isMorningDepartureWindow()) {
+        showPage(3);
+      } else {
+        showPage(0);
+      }
+    }
 
     function startDashboardWithAudio() {
       const audio = document.getElementById('welcome-audio');
-      if (audio) audio.play().catch(e => {});
-      showPage(1);
+      if (audio) {
+        audio.play().catch(e => {});
+        // L'audio est joué, mais on ne change PAS de vue automatiquement. 
+        // On attend que l'utilisateur effectue son premier changement de vue manuel.
+        audio.onended = () => {
+          audioFinished = true;
+        };
+      } else {
+        audioFinished = true;
+      }
     }
 
     function openRouteMap(destinationQuery, displayTitle) {
@@ -1284,8 +1344,10 @@
     }
 
     function showPage(index) {
-      if (index < 0) index = pages.length - 1;
-      if (index >= pages.length) index = 0;
+      const accessiblePages = getAccessiblePages();
+      if (!accessiblePages.includes(index)) {
+        index = accessiblePages[0];
+      }
 
       currentPageIndex = index;
       pages.forEach((pageId, i) => {
@@ -1297,7 +1359,10 @@
         }
       });
 
-      document.getElementById('nav-indicator').textContent = navTitles[currentPageIndex];
+      // Calcul dynamique du compteur de vues sur 3 au total
+      const currentPosInAccessible = accessiblePages.indexOf(currentPageIndex) + 1;
+      const totalAccessible = accessiblePages.length;
+      document.getElementById('nav-indicator').textContent = `Vue ${currentPosInAccessible}/${totalAccessible} : ${pageNames[currentPageIndex]}`;
       
       if (currentPageIndex === 3) {
         const depAudio = document.getElementById('departure-audio');
@@ -1306,10 +1371,46 @@
       resetInactivityTimer();
     }
 
+    function changePageRelative(direction) {
+      const accessiblePages = getAccessiblePages();
+      let pos = accessiblePages.indexOf(currentPageIndex);
+      if (pos === -1) pos = 0;
+      pos = (pos + direction + accessiblePages.length) % accessiblePages.length;
+      
+      // Dès que le voyageur change de vue manuellement après l'audio d'accueil, on active le suivi du timer d'inactivité
+      if (audioFinished && !firstManualChangeDone) {
+        firstManualChangeDone = true;
+      }
+
+      showPage(accessiblePages[pos]);
+    }
+
     function resetInactivityTimer() {
       clearTimeout(inactivityTimer);
-      inactivityTimer = setTimeout(() => { showPage(1); }, 180000);
+      
+      const stayInfo = getStayInfo();
+
+      // Le retour auto ne s'active que si on est en séjour, que l'audio est fini ET que l'utilisateur a fait au moins un changement manuel
+      if (!stayInfo.isStay || isMorningDepartureWindow() || !audioFinished || !firstManualChangeDone) return;
+
+      // Pendant le séjour, après 3 minutes d'inactivité, retour automatique sur la Vue 2 (Météo & Marées)
+      inactivityTimer = setTimeout(() => { 
+        const accessiblePages = getAccessiblePages();
+        if (accessiblePages.includes(1)) {
+          showPage(1);
+        }
+      }, 180000);
     }
+
+    // Réinitialise le minuteur lors des interactions, si les conditions de séjour et de navigation manuelle sont remplies
+    ['click', 'touchstart', 'mousemove'].forEach(event => {
+      document.addEventListener(event, () => {
+        const stayInfo = getStayInfo();
+        if (stayInfo.isStay && !isMorningDepartureWindow() && audioFinished && firstManualChangeDone) {
+          resetInactivityTimer();
+        }
+      }, { passive: true });
+    });
 
     function getMoonPhaseData() {
       const now = new Date();
@@ -1339,23 +1440,13 @@
       if (event.key === 'Escape' || event.key === 'Back' || event.keyCode === 10009 || event.keyCode === 27) {
         if (modalOpen) closeMapModal();
       } else if (!modalOpen) {
-        if (event.key === 'd' || event.key === 'D') {
-          showPage(currentPageIndex + 1);
+        if (event.key === 'd' || event.key === 'D' || event.key === 'MediaTrackNext' || event.keyCode === 271 || event.keyCode === 176) {
+          changePageRelative(1);
           event.preventDefault();
           return;
         }
-        if (event.key === 'q' || event.key === 'Q') {
-          showPage(currentPageIndex - 1);
-          event.preventDefault();
-          return;
-        }
-        if (event.key === 'MediaTrackNext' || event.keyCode === 271 || event.keyCode === 176) {
-          showPage(currentPageIndex + 1);
-          event.preventDefault();
-          return;
-        }
-        if (event.key === 'MediaTrackPrevious' || event.keyCode === 272 || event.keyCode === 177) {
-          showPage(currentPageIndex - 1);
+        if (event.key === 'q' || event.key === 'Q' || event.key === 'MediaTrackPrevious' || event.keyCode === 272 || event.keyCode === 177) {
+          changePageRelative(-1);
           event.preventDefault();
           return;
         }
@@ -1504,6 +1595,10 @@
       }
     }
     fetchWeather();
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadPlanningAndInit();
+    });
   </script>
 </body>
 </html>
